@@ -12,7 +12,7 @@ public class PiedraPapelTijera {
         System.out.printf("Hola, %s. ", name);
 
         do {
-            System.out.println("Elige 'piedra', 'papel' o 'tijera' para jugar o '!salir' para terminar el programa.");
+            System.out.println("Elige 'piedra', 'papel' o 'tijeras' para jugar o '!salir' para terminar el programa.");
             String opcionUsuario = sc.nextLine().toLowerCase().trim();
 
             String opcionComputadora = opcionAleatoria(random);
@@ -53,7 +53,13 @@ public class PiedraPapelTijera {
             System.out.printf(ganador ? "Bien hecho. El ordenador eligió %s y perdió\n" : "Lo siento, pero el ordenador eligió %s\n", opcionComputadora);
         }
     }
-
+    
+    /**
+     * Método que devuelve si el usuario ha ganado al ordenador
+     * @param opcionComputadora opción que elige el ordenador
+     * @param opcionUsuario opción que elige el usuario
+     * @return boolean
+     */
     static boolean ganador(String opcionComputadora, String opcionUsuario) {
         return (opcionComputadora.equals("tijeras") && opcionUsuario.equals("piedra"))
                 || (opcionComputadora.equals("piedra") && opcionUsuario.equals("papel"))
