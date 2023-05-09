@@ -20,11 +20,11 @@ public class PiedraPapelTijera {
                 sc.close();
                 System.exit(0);
             }
-            
-             if (opcionUsuario.equals("!puntos")) {
+
+            if (opcionUsuario.equals("!puntos")) {
                 System.out.printf("Llevas %d puntos. ", puntuacion);
 
-           } else if (opcionValida(opcionUsuario)) {
+            } else if (opcionValida(opcionUsuario)) {
                 puntuacion += resultadoYPuntuacion(opcionUsuario, opcionComputadora);
 
             } else if (opcionUsuario.isBlank()) {
@@ -46,6 +46,12 @@ public class PiedraPapelTijera {
         return opciones[random.nextInt(opciones.length)];
     }
 
+    /**
+     * Método que devuelve la puntuación en caso de jugar
+     * @param opcionUsuario opción que elige el usuario
+     * @param opcionComputadora opción que elige el ordenador
+     * @return int puntos
+     */
     static int resultadoYPuntuacion(String opcionUsuario, String opcionComputadora) {
         if (opcionUsuario.equals(opcionComputadora)) {
             int puntosEmpate = 50;
