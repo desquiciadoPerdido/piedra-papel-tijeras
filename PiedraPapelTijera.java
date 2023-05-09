@@ -10,9 +10,10 @@ public class PiedraPapelTijera {
         System.out.print("Introduce tu nombre: ");
         String name = sc.nextLine();
         System.out.printf("Hola, %s. ", name);
+        int puntuacion = 0;
 
         do {
-            System.out.println("Elige 'piedra', 'papel' o 'tijeras' para jugar o '!salir' para terminar el programa.");
+            System.out.println("Elige 'piedra', 'papel' o 'tijeras' para jugar, !puntos para ver tu puntuación, o '!salir' para salir del programa.");
             String opcionUsuario = sc.nextLine().toLowerCase().trim();
 
             String opcionComputadora = opcionAleatoria(random);
@@ -23,15 +24,18 @@ public class PiedraPapelTijera {
                 System.exit(0);
             }
 
-            if (opcionValida(opcionUsuario)) {
-                imprimirResultado(opcionUsuario, opcionComputadora);
+            if (opcionUsuario.equals("!puntos")) {
+                System.out.printf("Llevas %d puntos. ", puntuacion);
+
+            } else if (opcionValida(opcionUsuario)) {
+                puntuacion += resultadoYPuntuacion(opcionUsuario, opcionComputadora);
 
             } else if (opcionUsuario.isBlank()) {
                 System.out.println("Anda, escribe algo...");
+
             } else {
                 System.err.println("Opción inválida");
             }
-
             System.out.println("");
         } while (true);
     }
@@ -45,12 +49,28 @@ public class PiedraPapelTijera {
         return opciones[random.nextInt(opciones.length)];
     }
 
-    static void imprimirResultado(String opcionUsuario, String opcionComputadora) {
+    /**
+     * Método que devuelve la puntuación en caso de jugar
+     * @param opcionUsuario opción que elige el usuario
+     * @param opcionComputadora opción que elige el ordenador
+     * @return int puntos
+     */
+    static int resultadoYPuntuacion(String opcionUsuario, String opcionComputadora) {
         if (opcionUsuario.equals(opcionComputadora)) {
+            int puntosEmpate = 50;
             System.out.printf("Hay un empate. El ordenador también eligió %s.\n", opcionComputadora);
+            return puntosEmpate;
         } else {
             boolean ganador = ganador(opcionComputadora, opcionUsuario);
-            System.out.printf(ganador ? "Bien hecho. El ordenador eligió %s y perdió\n" : "Lo siento, pero el ordenador eligió %s\n", opcionComputadora);
+
+            int puntos = 0;
+            if (ganador) {
+                System.out.printf("Bien hecho. El ordenador eligió %s y perdió\n", opcionComputadora);
+                puntos = 100;
+            } else {
+                System.out.printf("Lo siento, pero el ordenador eligió %s\n", opcionComputadora);
+            }
+            return puntos;
         }
     }
     
