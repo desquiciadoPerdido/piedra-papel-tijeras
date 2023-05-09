@@ -7,6 +7,9 @@ public class PiedraPapelTijera {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
+        System.out.print("Introduce tu nombre: ");
+        String name = sc.nextLine();
+        System.out.printf("Hola, %s. ", name);
 
         do {
             System.out.println("Elige 'piedra', 'papel' o 'tijera' para jugar o '!salir' para terminar el programa.");
